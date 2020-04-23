@@ -5,17 +5,17 @@
 </template>
 
 <script>
+	import airport from'../../common/airport.js'
 	export default {
 		data() {
 			return {
-				text: 'qinluyun'
+				text: airport.list[1].data[1]
 			}
 		},
 		onLoad() {
 			
 		},
 		methods: {
-			
 		}
 	}
 </script>

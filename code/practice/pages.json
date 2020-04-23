@@ -25,6 +25,16 @@
 			"path":"pages/ShowDetail/ShowDetail",
 			"style":""
 		}
+        ,{
+            "path" : "pages/BluetoothTest/BluetoothTest",
+            "style" : {
+				"navigationStyle":"default"
+			}
+        }
+        ,{
+            "path" : "pages/httpTest/httpTest",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationStyle":"custom",

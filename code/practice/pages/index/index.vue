@@ -1,6 +1,6 @@
 <template>
 	<view class="all">
-		<view class="content">
+		<view class="userinforbar">
 			<image class="logo" src="/static/user.png"></image>
 			<text class="username">{{username}}</text>
 		</view>
@@ -13,6 +13,13 @@
 					</view>
 				</block>
 			</scroll-view>
+			<view class="content">
+				<swiper :current="tabIndex" @change="tabChange">
+					<swiper-item v-for="(a,index) in contentList" :key="index">
+						<text>{{a}}</text>
+					</swiper-item>
+				</swiper>
+			</view>
 		</view>
 		
 	</view>
@@ -23,6 +30,11 @@
 			return {
 				tabIndex:0,
 				username: '秦鹭云',
+				contentList: [
+					"秦鹭云\n男\nbsl\n极其健康",
+					"无",
+					"基线值"
+							],
 				tabBars:[
 					{
 						name: '基本信息',
@@ -44,7 +56,9 @@
 		},
 		onNavigationBarButtonTap(e) {
 			if (e.index == 0){
-				console.log('qqq')
+				uni.redirectTo({
+					url:'../httpTest/httpTest'
+				})
 			}
 		},
 		methods: {
@@ -53,6 +67,9 @@
 				this.tabIndex=index;
 				console.log(index)
 			},
+			tabChange(e){
+				this.tabIndex = e.detail.current
+			}
 		}
 	}
 </script>
@@ -61,11 +78,14 @@
 	.all{
 		flex-direction: column;
 	}
-	.content {
+	.userinforbar {
 		display: flex;
 		flex-direction:row;
 		align-items: center;
 		justify-content: center;
+	}
+	.content{
+		margin-left: 40rpx;
 	}
 	.line{
 		width: 94%;
