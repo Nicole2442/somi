@@ -1,0 +1,44 @@
+<template>
+	<view>
+		<button class="btn_openBL" @click="openBL">{{btn_openBL_text}}</button>
+		<button class="btn_startDis" @click="startDis">{{btn_startDis_text}}</button>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				btn_openBL_text:'打开蓝牙',
+				btn_startDis_text:'找寻设备'
+			}
+		},
+		onLoad() {
+			uni.onBluetoothDeviceFound(function(e){
+				console.log(e);
+			})
+		},
+		methods: {
+			openBL(e){
+				uni.openBluetoothAdapter({
+					success() {
+					},
+					fail(e) {
+						console.log(e.errCode);
+					}
+				})
+			},
+			startDis(){
+				uni.startBluetoothDevicesDiscovery({
+					success(e) {
+						console.log(e);
+					}
+				})
+			}
+		}
+	}
+</script>
+
+<style>
+
+</style>
