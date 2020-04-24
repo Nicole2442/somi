@@ -29,4 +29,9 @@
 
 ## uve 与 nuve页面区别
 - 渲染机制不同，vue基于webview渲染，nvue基于app原生机制渲染
-- 开发区别详见（https://uniapp.dcloud.io/use-weex?id=nvue%e5%bc%80%e5%8f%91%e4%b8%8evue%e5%bc%80%e5%8f%91%e7%9a%84%e5%b8%b8%e8%a7%81%e5%8c%ba%e5%88%ab），
+- 开发区别详见（https://uniapp.dcloud.io/use-weex?id=nvue%e5%bc%80%e5%8f%91%e4%b8%8evue%e5%bc%80%e5%8f%91%e7%9a%84%e5%b8%b8%e8%a7%81%e5%8c%ba%e5%88%ab）
+
+## 关于uniapp后台服务
+- 可以使用setinterval()定时器的形式，在后台不断间隔执行任务
+- 经试验，clearinterval()只能在setinterval()相同的页面调用才能成功的关掉
+- 如果想在另一页面关掉服务，可以借助uniapp的页面通讯机制发广播通知

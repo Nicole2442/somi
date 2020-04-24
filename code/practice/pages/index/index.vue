@@ -1,5 +1,10 @@
 <template>
 	<view class="all">
+		<uniPopup type="top" ref="popup">
+			<view class="popupview">
+				<button class="btn_pop">sss</button>
+			</view>
+		</uniPopup>
 		<view class="userinforbar">
 			<image class="logo" src="/static/user.png"></image>
 			<text class="username">{{username}}</text>
@@ -25,10 +30,14 @@
 	</view>
 </template>
 <script>
+	import uniPopup from'@/components/uni-popup/uni-popup.vue'
 	export default {
+		components:{uniPopup},
 		data() {
 			return {
+				num:0,
 				tabIndex:0,
+				timerid:0,
 				username: '秦鹭云',
 				contentList: [
 					"秦鹭云\n男\nbsl\n极其健康",
@@ -52,13 +61,29 @@
 			}
 		},
 		onLoad() {
-
+			uni.setStorage({
+				key:'test',
+				data:'qqq',
+				success() {
+					console.log('持久了');
+				}
+			}),
+			this.timerid = setInterval(()=>{
+				this.num += 1,
+				console.log('qqq'+ this.num)
+			},2000),
+			console.log(this.timerid + 'ID')
+			uni.$once('close',()=>{
+				console.log('触发了');
+				clearInterval(this.timerid)
+			})
 		},
 		onNavigationBarButtonTap(e) {
 			if (e.index == 0){
-				uni.redirectTo({
-					url:'../httpTest/httpTest'
+				uni.reLaunch({
+					url:'../backservicetest/backservicetest'
 				})
+				//this.$refs.popup.open()
 			}
 		},
 		methods: {
@@ -75,6 +100,10 @@
 </script>
 
 <style>
+	.popupview{
+		width: 60%;
+		margin-left: 0px;
+	}
 	.all{
 		flex-direction: column;
 	}

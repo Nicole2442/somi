@@ -30,10 +30,18 @@
             "style" : {
 				"navigationStyle":"default"
 			}
-        }
+        },
+		{
+		    "path" : "pages/httpTest/httpTest",
+		    "style" : {
+				"navigationStyle":"custom"
+			}
+		}
         ,{
-            "path" : "pages/httpTest/httpTest",
-            "style" : {}
+            "path" : "pages/backservicetest/backservicetest",
+            "style" : {
+				"navigationStyle":"custom"
+			}
         }
     ],
 	"globalStyle": {
