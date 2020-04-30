@@ -43,6 +43,10 @@
 				"navigationStyle":"custom"
 			}
         }
+        ,{
+            "path" : "pages/bluetooth/bluetooth",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationStyle":"custom",

@@ -35,3 +35,23 @@
 - 可以使用setinterval()定时器的形式，在后台不断间隔执行任务
 - 经试验，clearinterval()只能在setinterval()相同的页面调用才能成功的关掉
 - 如果想在另一页面关掉服务，可以借助uniapp的页面通讯机制发广播通知
+
+## 关于uniapp bluetooth的问题
+- 测试环境：
+    - 安卓手机：HONOR note 10, HUAWEI nova2s, SAMSUNG S7
+    - BLE设备：小米MI1A手环
+- 测试程序：
+    - 原生安卓编写蓝牙通信部分
+    - uniapp 编写蓝牙通信部分
+- 表现：
+    - 原生安卓可以按流程获得特征值，步数，电量等
+    - Uniapp只可以获取到设备下characteristic的UUID，当获取具体特征值的时候为null（BLE通信机制：要想获得特征值需经过DeviceID-ServiceID-CharacteristicID-value的步骤一层层获取）
+- 结论及猜测：
+    - uniapp可以与ble设备进行通信， 因为建立连接后可以一层层获得uuid
+    - uniapp获取不到value值的原因猜测分析（无法验证，早晨想看uni源码，但是看不到）：
+        - 获取value，需要提供准确的characteristicID才能获取（区分大小写），uniapp的api中默认把这些DeviceID,ServiceID,CharacteristicID中的英文字母置为大写。而原生安卓测试时，字母小写的characteristicID才能获取到value值
+        - 例如获取步数的UUID对应为"0000ff06-0000-1000-8000-00805f9b34fb",而到了UNI APP接口使用时会被默认转换为"0000FF06-0000-1000-8000-00805F9B34FB"。
+        - 在调用uniapp的接口之前，我手动把UUID英文转换为小写，然后再调用，但还是获取不到相应值，猜测uni api中源码又进行了一层封装（无法验证）
+- 下一步计划：
+    - 找新的协议已知的BLE设备进行uniapp蓝牙测试，最好其特征值UUID为大写的设备。
+    - 测试新的跨平台框架 Flutter
